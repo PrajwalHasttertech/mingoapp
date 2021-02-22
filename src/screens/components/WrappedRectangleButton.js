@@ -55,7 +55,7 @@ class WrappedButton extends Component {
 const styles = StyleSheet.create({
     container: {
         marginTop: 10,
-        height: globalHeight * 0.9,
+        height: globalHeight * 0.7,
         borderRadius: globalHeight * 0.5,
         overflow: "hidden",
     },

@@ -1,17 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight } from '../../../constants/Dimensions';
-import WrappedRectangleButton from "../../components/WrappedRectangleButton";
+import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight } from '../../constants/Dimensions';
+import WrappedRectangleButton from "../components/WrappedRectangleButton";
+import { useNavigation } from '@react-navigation/native';
 
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../../../components/CarouselCardItem';
-import data from '../../../components/data';
+import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../../components/CarouselCardItem';
+import data from '../../components/data';
 
 
 
-const Splash = () => {
+const Splash = ({ navigation }) => {
     const [index, setIndex] = React.useState(0)
     const isCarousel = React.useRef(null)
     return (
@@ -39,7 +40,7 @@ const Splash = () => {
                 >
                     <Image
                         style={styles.tinyLogo}
-                        source={require('../../../icons/Logo.png')}
+                        source={require('../../icons/Logo.png')}
                     />
                     <View style={styles.TandC}>
                         <View style={{ marginBottom: '4%' }}>
@@ -50,61 +51,63 @@ const Splash = () => {
                         </View>
                     </View>
                     {/* <View style={styles.withinRelative}> */}
-                        <Pagination
-                            dotsLength={data.length}
-                            activeDotIndex={index}
-                            carouselRef={isCarousel}
-                            dotStyle={{
-                                width: 30,
-                                height: 5,
-                                borderRadius: 5,
-                                marginHorizontal: 0,
-                                backgroundColor: colors.white
-                            }}
-                            inactiveDotOpacity={1}
-                            inactiveDotScale={0.6}
-                            tappableDots={true}
-                            
-                        />
+                    <Pagination
+                        dotsLength={data.length}
+                        activeDotIndex={index}
+                        carouselRef={isCarousel}
+                        dotStyle={{
+                            width: 30,
+                            height: 5,
+                            borderRadius: 5,
+                            marginHorizontal: 0,
+                            backgroundColor: colors.white
+                        }}
+                        inactiveDotOpacity={1}
+                        inactiveDotScale={0.6}
+                        tappableDots={true}
+
+                    />
                     {/* </View> */}
                     <View style={styles.getStartedContainer}>
                         <WrappedRectangleButton
-                            onPress={() => {
-                                alert('hai')
-                            }}
+                            onPress={() => navigation.navigate('authScreen')}
                             backgroundColor={colors.white}
                             textColor={colors.textColor}
                             buttonText={"Get Started"}
                         />
                     </View>
-                    <View style={{ alignItems: 'center', marginTop: 20 }}>
-                        <Text style={{ color: colors.white }}>Terms and Conditions</Text>
+                    <View style={{ alignItems: 'center', marginTop: 20, marginBottom: globalHeight * 0.7 }}>
+                        <Text style={{ color: colors.white }}>Terms and Conditions </Text>
                     </View>
                 </LinearGradient>
             </View>
         </View>
     )
 }
-
+export default Splash;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         height: globalHeight * 10,
-        position: 'relative'
+        position: 'relative',
+        display: 'flex',
+        flex: 1,
     },
     tinyLogo: {
         width: globalWidth * 8,
         height: globalHeight * 1.5,
-        marginLeft: '8%',
+        // marginLeft: '8%',
+        // backgroundColor: '#fff',
+        alignSelf: 'center',
+        // aspectRatio: 1,
+        resizeMode: 'contain',
     },
     linearGradient: {
-        flex: 1,
-        height: globalHeight * 6.3,
-        top: globalHeight * 2,
-        width:globalWidth * 10
-
+        // height: globalHeight * 6,
+        marginBottom: Dimensions.get("window").height * -0.47,
+        // width: globalWidth * 10,
     },
     buttonText: {
         fontSize: 18,
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
     },
     TandC: {
         alignItems: 'center',
-        marginTop : '5%'
+        marginTop: '5%'
     },
     titleText: {
         color: colors.white,
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
         paddingLeft: 60,
         paddingRight: 60,
         fontFamily: FontFamily.RobotoRegular,
-        
+
     },
     getStartedContainer: {
         marginLeft: globalWidth * 0.5,
@@ -142,4 +145,3 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Splash;

@@ -44,3 +44,9 @@ export const FontFamily = {
     RobotBold: "Roboto-Bold",
     Helvatica: "Helvetica",
 };
+
+export const navigationScreen = {
+    // firendRequest: "friendRequest",
+    splashScreen: "splashScreen",
+    // chatScreen: "chatScreen",
+  };

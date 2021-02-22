@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, StatusBar, Text, Image } from "react-native";
+import { View, StyleSheet, StatusBar, Text, Image, KeyboardAvoidingView, ScrollView } from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import { colors, FontFamily, fs14, globalHeight, globalWidth } from "../../constants/Dimensions";
@@ -14,6 +14,7 @@ class SignIn extends Component {
             mobileNumber: "",
             error: {},
             fetchError: "",
+            keyboardVerticalOffset : Platform.OS === 'ios' ? 0 : 140,
         };
     }
 
@@ -29,7 +30,7 @@ class SignIn extends Component {
             error,
         } = this.state;
         return (
-            <View>
+            <ScrollView style={{ flex: 1 }}>
                 <View style={styles.logoContainer}>
                     <Image
                         style={styles.tinyLogo}
@@ -43,72 +44,73 @@ class SignIn extends Component {
                     <Text style={styles.contWithPhnoDesc1}> to  verify next. </Text>
                 </View>
 
-
-                <View style={styles.mobNoContainer}>
-                    <View style={{ width: globalWidth * 2, left: 8 }}>
-                        <DropDownPicker
-                            items={[
-                                { label: '+91', value: '+91' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                                { label: '+380', value: '+380' },
-                                { label: '+33', value: '+33' },
-                            ]}
-                            defaultValue={this.state.country}
-                            containerStyle={{ height: 40 }}
-                            style={{ backgroundColor: '#fff', borderStyle: 'dotted', borderColor: '#fff' }}
-                            itemStyle={{ justifyContent: 'flex-start' }}
-                            dropDownStyle={{ backgroundColor: '#fff', borderColor: '#fff' }}
-                            onChangeItem={item => this.setState({
-                                country: item.value
-                            })}
-                        />
+                <KeyboardAvoidingView keyboardVerticalOffset={this.state.keyboardVerticalOffset}>
+                    <View style={styles.mobNoContainer}>
+                        <View style={{ width: globalWidth * 2.3, left: 8 }}>
+                            <DropDownPicker
+                                items={[
+                                    { label: '+91', value: '+91' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                    { label: '+380', value: '+380' },
+                                    { label: '+33', value: '+33' },
+                                ]}
+                                defaultValue={this.state.country}
+                                containerStyle={{ height: globalHeight * 0.65, }}
+                                style={{ backgroundColor: '#fff', borderColor: '#fff', }}
+                                itemStyle={{ justifyContent: 'flex-start' }}
+                                dropDownStyle={{ backgroundColor: '#fff', borderColor: '#fff' }}
+                                onChangeItem={item => this.setState({
+                                    country: item.value
+                                })}
+                            />
+                        </View>
+                        <View style={styles.buttonContainerMob}>
+                            <WrappedTextInput
+                                value={mobileNumber}
+                                onChangeText={(mobileNumber) => {
+                                    this.setState({
+                                        mobileNumber: mobileNumber,
+                                    });
+                                }}
+                                style={[styles.textContainerMob, { backgroundColor: colors.white }]}
+                                placeholderTextColor={colors.textColor}
+                                textInputStyle={styles.textInput}
+                                placeholder={"Mobile Number"}
+                                keyboardType={"numeric"}
+                                errorContainer={{}}
+                                errorText={error.mobileNumber}
+                                errorTextColor={colors.white}
+                            />
+                        </View>
+                        <View style={{ width: globalWidth * 1.5, backgroundColor: colors.white, height: globalHeight * 0.66, marginRight: 5, borderBottomRightRadius: 8, borderTopRightRadius: 8 }}>
+                            <Image
+                                style={styles.checked}
+                                source={require('../../icons/checked.png')}
+                            />
+                        </View>
                     </View>
-                    <View style={styles.buttonContainerMob}>
-                        <WrappedTextInput
-                            value={mobileNumber}
-                            onChangeText={(mobileNumber) => {
-                                this.setState({
-                                    mobileNumber: mobileNumber,
-                                });
-                            }}
-                            style={[styles.textContainerMob, { backgroundColor: colors.white }]}
-                            placeholderTextColor={colors.textColor}
-                            textInputStyle={styles.textInput}
-                            placeholder={"Mobile Number"}
-                            keyboardType={"numeric"}
-                            errorContainer={{}}
-                            errorText={error.mobileNumber}
-                            errorTextColor={colors.white}
-                        />
-                    </View>
-                    <View style={{ width: globalWidth * 1.5, backgroundColor: '#fff', height: globalHeight * 0.62 }}>
-                        <Image
-                            style={styles.checked}
-                            source={require('../../icons/checked.png')}
-                        />
-                    </View>
-                </View>
+                </KeyboardAvoidingView>
 
                 <View style={styles.buttonContainer}>
                     <WrappedRectangleButton
                         onPress={() => {
-                            alert('hai')
+                            this.props.navigation.navigate('otpScreen')
                         }}
                         backgroundColor={colors.textColor}
                         textColor={colors.white}
                         buttonText={"Continue"}
                     />
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -119,8 +121,8 @@ const styles = StyleSheet.create({
         fontFamily: FontFamily.RobotoMedium
     },
     contWithPhnoDesc: {
-        alignItems:'center',
-        justifyContent:'center',
+        alignItems: 'center',
+        justifyContent: 'center',
         fontSize: 14,
         color: colors.bluishGrey,
         fontFamily: FontFamily.RobotoRegular,
@@ -129,8 +131,8 @@ const styles = StyleSheet.create({
         // marginRight: globalWidth * 2.7
     },
     contWithPhnoDesc1: {
-        alignItems:'center',
-        justifyContent:'center',
+        alignItems: 'center',
+        justifyContent: 'center',
         fontSize: 14,
         color: colors.bluishGrey,
         fontFamily: FontFamily.RobotoRegular,
@@ -139,24 +141,31 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        top: globalHeight * 1.5
+        marginTop: globalHeight * 1.3
     },
     textContainer: {
         alignItems: 'center',
-        top: globalHeight * 3
+        marginTop: globalHeight * 0.7
     },
     buttonContainer: {
-        top: globalHeight * 5.1,
         marginLeft: '5%',
         marginRight: '5%',
+        marginTop: globalHeight * 2,
+        marginBottom: '5%',
+        // backgroundColor:colors.white
+        justifyContent: 'flex-end',
+        flex: 1,
     },
     mobNoContainer: {
         flexDirection: 'row',
-        top: globalHeight * 3.5,
+        marginTop: globalHeight * 0.5,
         marginLeft: 20,
         marginRight: 20,
-        backgroundColor: colors.white,
+        // backgroundColor: colors.white,
         borderRadius: 10,
+        alignSelf: 'center',
+        justifyContent: 'center',
+
     },
     textContainerMob: {
         height: globalHeight * 0.65,
@@ -164,18 +173,22 @@ const styles = StyleSheet.create({
         color: "#ffffff",
     },
     buttonContainerMob: {
-        width: globalWidth * 5
+        width: globalWidth * 5,
+        backgroundColor: 'white'
     },
     checked: {
         height: globalHeight * 0.3,
-        width: globalWidth * 0.5,
-        top: globalHeight * 0.17,
-        left: globalWidth * 0.7
+        width: globalWidth * 0.6,
+        marginTop: globalHeight * 0.17,
+        marginLeft: globalWidth * 0.7,
+        resizeMode: 'contain',
     },
     textInput: {
         color: "#000",
         marginLeft: globalWidth * 0.2,
-        fontSize: fs14
+        fontSize: fs14,
+        alignItems: 'center',
+        alignSelf: 'center'
     },
 })
 

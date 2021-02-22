@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Pressable, StatusBar, Text, Image, ToastAndroid } from "react-native";
+import { View, StyleSheet, Pressable, StatusBar, Text, Image, ToastAndroid, KeyboardAvoidingView } from "react-native";
 import {
     fs13,
     fs29,
@@ -13,6 +13,7 @@ import {
     fs24ng,
     fs16
 } from "../../constants/Dimensions";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import {
     WrappedRectangleButton,
@@ -62,11 +63,10 @@ class Otp extends Component {
                             justifyContent: "center",
                             height: globalHeight * 1.1,
                         }}
-                    leftIcon={LeftArrowBlack}
-                    onLeftIconPress={() => {
-                        // this.props.navigation.goBack();
-                        alert('hai')
-                    }}
+                        leftIcon={LeftArrowBlack}
+                        onLeftIconPress={() => {
+                            this.props.navigation.goBack();
+                        }}
                     />
 
                     <View style={styles.logoContainer}>
@@ -80,16 +80,15 @@ class Otp extends Component {
                     <WrappedText
                         containerStyle={{
                             alignSelf: "center",
-                            marginTop: globalHeight,
+                            marginTop: globalHeight * 0.5,
                         }}
                         text={"Enter OTP "}
                         textStyle={styles.textStyleEnterOTP}
                     />
-                    {/* <Text style={styles.textStyleEnterOTP}>Enter OTP</Text> */}
                     <WrappedText
                         containerStyle={{
                             alignSelf: "center",
-                            marginTop: globalHeight * 0.1,
+                            marginTop: globalHeight * 0.5
                         }}
                         text={"Enter 4 digit code. We'll text you on"}
                         textStyle={styles.textStyleEnterOTPDesc}
@@ -104,6 +103,7 @@ class Otp extends Component {
                         textStyle={[styles.textStyleEnterOTPDesc, { marginTop: globalHeight * 2.8 }]}
                         fontFamily={FontFamily.RobotoRegular}
                     />
+
                     <OTPInputView
                         style={styles.otpTextInput}
                         pinCount={4}
@@ -118,7 +118,7 @@ class Otp extends Component {
                     //     this.setState({ otp });
                     // }}
                     />
-                    <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                    <View style={{ flexDirection: "row", alignSelf: "center", }}>
                         <WrappedText
                             containerStyle={styles.otpTextContainer}
                             text={"  00.36"}
@@ -186,7 +186,7 @@ export default Otp;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
     },
     otpContainer: {
         alignSelf: "center",
@@ -204,10 +204,14 @@ const styles = StyleSheet.create({
         width: globalWidth,
     },
     otpTextInput: {
-        marginTop: globalHeight * 3.5,
-        width: globalWidth * 5,
-        marginLeft: globalWidth * 2.5,
-        height: globalHeight * 0.6,
+        // marginTop: globalHeight * 3.5,
+        // width: '70%',
+        // marginLeft: globalWidth * 1.5,
+        // height: globalHeight * 0.6,
+        marginTop: globalHeight * 3.2,
+        height: globalHeight,
+        width: "60%",
+        alignSelf: "center",
     },
     otpTextContainer: {
         // alignSelf: "center",
@@ -227,7 +231,7 @@ const styles = StyleSheet.create({
         color: colors.blue,
         fontSize: fs24ng,
         fontFamily: FontFamily.RobotoMedium,
-        marginTop: globalHeight * 1.9,
+        marginTop: globalHeight * 2.5,
     },
     textStyleEnterOTPDesc: {
         color: colors.grey,
@@ -250,7 +254,9 @@ const styles = StyleSheet.create({
         // bottom: "5%",
         marginLeft: '5%',
         marginRight: '5%',
-        marginTop: globalHeight * 2.3,
+        marginTop: globalHeight * 2,
+        // flex:1,
+        // justifyContent:'flex-end'
     },
     logoContainer: {
         alignItems: 'center',
