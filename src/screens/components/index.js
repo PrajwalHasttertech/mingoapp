@@ -3,6 +3,7 @@ import WrappedRectangleButton from "./WrappedRectangleButton";
 import WrappedText from "./WrappedText";
 import Header from './Header';
 import WrappedRoundButton from "./WrappedRoundButton";
+import Loader from "./Loader"
 
 export {
     WrappedRectangleButton,
@@ -10,4 +11,5 @@ export {
     WrappedText,
     Header,
     WrappedRoundButton,
+    Loader,
 };

@@ -1,22 +1,66 @@
 import React, { Component } from "react";
 import { View, StyleSheet, StatusBar, Text, Image, KeyboardAvoidingView, ScrollView } from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
+import SimpleToast from "react-native-simple-toast";
 
 import { colors, FontFamily, fs14, globalHeight, globalWidth } from "../../constants/Dimensions";
 import { WrappedRectangleButton, WrappedTextInput } from "../components";
+import { DataHandling } from "../../server/DatahandlingHoc";
+import { routeNames } from "../../server/route";
 
-class SignIn extends Component {
+
+class SignIn extends DataHandling {
 
     constructor(props) {
         super(props);
         this.state = {
             country: '+91',
-            mobileNumber: "",
+            mobileNumber: "9901895934",
             error: {},
             fetchError: "",
-            keyboardVerticalOffset : Platform.OS === 'ios' ? 0 : 140,
+            isLoading: false,
+            keyboardVerticalOffset: Platform.OS === 'ios' ? 0 : 140,
         };
     }
+
+    onSignUp = () => {
+        let error = {};
+        const { mobileNumber } = this.state;
+        let flag = 0;
+        const mobileValidation = /^[1-9]{1}[0-9]{9}$/;
+
+        if (!mobileValidation.test(mobileNumber)) {
+            flag = 1;
+            error.mobileNumber = "Please enter valid mobile number.";
+        }
+
+        this.setState({ error });
+        if (flag == 0) {
+            this.submitDetails();
+        }
+    };
+
+    submitDetails = async () => {
+        try {
+            const { mobileNumber } = this.state;
+            const data = {
+                mobile_number: "+91" + mobileNumber,
+            };
+            // console.warn(data)
+            this.setState({ isLoading: true });
+
+            const result = await this.fetchData(routeNames.sendOtp, data);
+            console.log(result.length, "The length of the result")
+            if (result) {
+                this.setState({ isLoading: false });
+                SimpleToast.show(result.data.message);
+                this.props.navigation.navigate("otpScreen", {
+                    mobileNumber: mobileNumber,
+                });
+            }
+        } catch (error) { }
+    };
+
 
     componentDidMount() {
         StatusBar.setBackgroundColor("#000000");
@@ -103,7 +147,8 @@ class SignIn extends Component {
                 <View style={styles.buttonContainer}>
                     <WrappedRectangleButton
                         onPress={() => {
-                            this.props.navigation.navigate('otpScreen')
+                            // this.props.navigation.navigate('otpScreen')
+                            this.submitDetails();
                         }}
                         backgroundColor={colors.textColor}
                         textColor={colors.white}

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Pressable, StatusBar, Text, Image, ToastAndroid, KeyboardAvoidingView } from "react-native";
+import { DataHandling } from "../../server/DatahandlingHoc";
+import { routeNames } from "../../server/route";
+import SimpleToast from "react-native-simple-toast";
+import Axios from "axios";
 import {
     fs13,
     fs29,
@@ -23,7 +27,9 @@ import {
 import OTPInputView from "@twotalltotems/react-native-otp-input";
 import { LeftArrowBlack } from "../../icons";
 
-class Otp extends Component {
+
+
+class Otp extends DataHandling {
     constructor(props) {
         super(props);
 
@@ -47,10 +53,42 @@ class Otp extends Component {
         );
     };
 
+    setMobileNumber = () => {
+        const mobileNumber = this.props.route.params.mobileNumber;
+        this.setState({ mobileNumber })
+    }
+
+    resendOtp = async () => {
+        try {
+            // "+91 " + console.log(this.state.timer, "resend");
+            // if (this.state.timer < 1) {
+            //     this.setState({ timer: 10 });
+
+            //     this.startTimer();
+            // }
+            // this.setState({ isLoading: true });
+
+            const result = await this.fetchData(routeNames.resendOtp, {
+                mobile_number: "+91" + this.state.mobileNumber,
+            });
+            console.log(result);
+            if (result) {
+                SimpleToast.show("OTP sent to provided mobile number.");
+                // this.setState({ isLoading: false });
+            }
+        } catch (error) {
+            // this.setLoader(false);
+        }
+        //resendOtp callback
+    };
+
+    componentDidMount() {
+        this.setMobileNumber();
+    }
 
 
     render() {
-        // const { timer, mobileNumber, isLoading } = this.state;
+        const { mobileNumber,isLoading } = this.state;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
@@ -98,8 +136,8 @@ class Otp extends Component {
                             alignSelf: "center",
                             marginTop: globalHeight * 0.2,
                         }}
-                        // text={"+91 " + mobileNumber}
-                        text={"9995550100. "}
+                        text={"+91 " + mobileNumber}
+                        // text={"9995550100. "}
                         textStyle={[styles.textStyleEnterOTPDesc, { marginTop: globalHeight * 2.8 }]}
                         fontFamily={FontFamily.RobotoRegular}
                     />
@@ -137,7 +175,7 @@ class Otp extends Component {
                         />
                     </View>
 
-                    <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                    <View style={{ flexDirection: "row", alignSelf: "center", marginRight: globalWidth }}>
                         <WrappedText
                             containerStyle={styles.otpTextContainerResend}
                             text={"Didn't receive the OTP? "}
@@ -146,26 +184,34 @@ class Otp extends Component {
                                 // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
                             ]}
                         />
-                        <WrappedText
-                            containerStyle={styles.otpTextContainerResend}
-                            text={" Resend"}
-                            textStyle={[
-                                styles.resendOtpText, { color: colors.orange }
-                                // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
-                            ]}
-                        />
+
+                        <Pressable
+                            onPress={() => {
+                                this.resendOtp();
+                                // alert('hai')
+                            }}
+                            android_ripple={true}
+                            style={{ position: 'absolute', left: globalWidth * 4 }}
+                        >
+                            <WrappedText
+                                containerStyle={styles.otpTextContainerResend}
+                                text={" Resend"}
+                                textStyle={[
+                                    styles.resendOtpText, { color: colors.orange }
+                                    // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
+                                ]}
+                            />
+
+                        </Pressable>
+
+
                     </View>
 
 
 
-                    {/* <Pressable
-                        // onPress={() => {
-                        //     this.resendOtp();
-                        // }}
-                        android_ripple={true}
-                    >
 
-                    </Pressable> */}
+
+
 
                     <View style={styles.button}>
                         <WrappedRectangleButton
