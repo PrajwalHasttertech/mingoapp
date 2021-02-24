@@ -42,6 +42,8 @@ class Otp extends DataHandling {
         };
     }
 
+
+
     startTimer = () => {
         this.timer = setInterval(() => {
             this.setState({ timer: this.state.timer - 1 });
@@ -58,7 +60,34 @@ class Otp extends DataHandling {
         this.props.navigation.replace(screen);
     };
 
+    verifyOtp = async () => {
+        //this.startTimer();
+        this.setState({ isLoading: true });
+        const { mobileNumber, otp, userName } = this.state;
+        const fcmToken = await AsyncStorage.getItem("fcmToken");
+        try {
+            const result = await this.fetchData(routeNames.verifyOtp, {
+                mobile_number: "+91" + mobileNumber,
+                otp: otp,
+                device_token: fcmToken,
+            });
+            console.log(result);
+            if (result) {
+                await this.storeData(result.data.data);
+                Axios.defaults.headers.common = {
+                    Authorization: `Bearer ${result.data.data.access_token}`,
+                };
 
+                console.log("Lets Check Result");
+                this.checkNavigationState();
+                //this.props.navigation.replace("findNearestScreen");
+            } else {
+            }
+        } catch (error) {
+            console.log(error);
+            this.setLoader(false);
+        }
+    };
 
     resendOtp = async () => {
         try {
@@ -158,9 +187,9 @@ class Otp extends DataHandling {
                             fontSize: 16,
                             color: colors.black,
                         }}
-                    // onCodeChanged={(otp) => {
-                    //     this.setState({ otp });
-                    // }}
+                        onCodeChanged={(otp) => {
+                            this.setState({ otp });
+                        }}
                     />
                     <View style={{ flexDirection: "row", alignSelf: "center", }}>
                         <WrappedText
@@ -204,21 +233,12 @@ class Otp extends DataHandling {
                                     timer == 0 ? { color: colors.orange } : { color: colors.grey },
                                 ]}
                             />
-
                         </Pressable>
-
-
                     </View>
-
-
-
-
-
-
 
                     <View style={styles.button}>
                         <WrappedRectangleButton
-                            onPress={() => this.showToastWithGravityAndOffset()}
+                            onPress={() => { this.verifyOtp(); }}
                             backgroundColor={colors.textColor}
                             textColor={colors.white}
                             buttonText={"Verify And Create Account"}

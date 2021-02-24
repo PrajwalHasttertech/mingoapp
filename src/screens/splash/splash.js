@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import messaging from "@react-native-firebase/messaging";
+
 import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight } from '../../constants/Dimensions';
 import WrappedRectangleButton from "../components/WrappedRectangleButton";
-import { useNavigation } from '@react-navigation/native';
-
-
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../../components/CarouselCardItem';
 import data from '../../components/data';
@@ -13,8 +12,51 @@ import data from '../../components/data';
 
 
 const Splash = ({ navigation }) => {
+
     const [index, setIndex] = React.useState(0)
     const isCarousel = React.useRef(null)
+
+    const getItem = async (name) => {
+        return await AsyncStorage.getItem(name);
+    };
+
+    const checkPermission = async () => {
+        const enabled = await messaging().hasPermission();
+        if (enabled) {
+            await getToken();
+        } else {
+            await requestPermission();
+        }
+    }
+
+    const requestPermission = async () => {
+        try {
+            await messaging().requestPermission();
+            // User has authorised
+            await getToken();
+        } catch (error) {
+            // User has rejected permissions
+            console.log("permission rejected");
+        }
+    }
+
+    const getToken = async () => {
+        let fcmToken = await AsyncStorage.getItem("fcmToken");
+        if (!fcmToken) {
+            console.log("No Token. Getting a New Token");
+            fcmToken = await messaging().getToken();
+            if (fcmToken) {
+                // user has a device token
+                await AsyncStorage.setItem("fcmToken", fcmToken);
+            }
+        }
+        console.log("FCM TOKEN: ", fcmToken);
+    }
+
+    useEffect(() => {
+        checkPermission();
+    }, []);
+
     return (
         <View style={styles.container}>
             <Carousel
