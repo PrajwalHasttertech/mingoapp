@@ -36,37 +36,38 @@ class Otp extends DataHandling {
         this.state = {
             otp: undefined,
             error: undefined,
-            timer: 10,
+            timer: 30,
             mobileNumber: "+91 XXXXXXXXXX",
             userName: "",
-
         };
     }
 
-    showToastWithGravityAndOffset = () => {
-        ToastAndroid.showWithGravityAndOffset(
-            "Toast on react native works ",
-            ToastAndroid.LONG,
-            ToastAndroid.BOTTOM,
-            25,
-            50
-        );
+    startTimer = () => {
+        this.timer = setInterval(() => {
+            this.setState({ timer: this.state.timer - 1 });
+        }, 1000);
     };
 
-    setMobileNumber = () => {
-        const mobileNumber = this.props.route.params.mobileNumber;
-        this.setState({ mobileNumber })
+    componentDidUpdate() {
+        if (this.state.timer === 0) {
+            clearInterval(this.timer);
+        }
     }
+
+    navigateTo = (screen) => {
+        this.props.navigation.replace(screen);
+    };
+
+
 
     resendOtp = async () => {
         try {
-            // "+91 " + console.log(this.state.timer, "resend");
-            // if (this.state.timer < 1) {
-            //     this.setState({ timer: 10 });
-
-            //     this.startTimer();
-            // }
-            // this.setState({ isLoading: true });
+            "+91 " + console.log(this.state.timer, "resend");
+            if (this.state.timer < 1) {
+                this.setState({ timer: 30 });
+                this.startTimer();
+            }
+            this.setState({ isLoading: true });
 
             const result = await this.fetchData(routeNames.resendOtp, {
                 mobile_number: "+91" + this.state.mobileNumber,
@@ -74,21 +75,27 @@ class Otp extends DataHandling {
             console.log(result);
             if (result) {
                 SimpleToast.show("OTP sent to provided mobile number.");
-                // this.setState({ isLoading: false });
+                this.setState({ isLoading: false });
             }
         } catch (error) {
-            // this.setLoader(false);
+            this.setLoader(false);
         }
         //resendOtp callback
     };
 
+    setMobileNumber = () => {
+        const mobileNumber = this.props.route.params.mobileNumber;
+        this.setState({ mobileNumber })
+    }
+
     componentDidMount() {
         this.setMobileNumber();
+        this.startTimer();
     }
 
 
     render() {
-        const { mobileNumber,isLoading } = this.state;
+        const { timer, mobileNumber, isLoading } = this.state;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle={"light-content"} />
@@ -137,7 +144,6 @@ class Otp extends DataHandling {
                             marginTop: globalHeight * 0.2,
                         }}
                         text={"+91 " + mobileNumber}
-                        // text={"9995550100. "}
                         textStyle={[styles.textStyleEnterOTPDesc, { marginTop: globalHeight * 2.8 }]}
                         fontFamily={FontFamily.RobotoRegular}
                     />
@@ -159,7 +165,7 @@ class Otp extends DataHandling {
                     <View style={{ flexDirection: "row", alignSelf: "center", }}>
                         <WrappedText
                             containerStyle={styles.otpTextContainer}
-                            text={"  00.36"}
+                            text={timer != 0 && `${timer}`}
                             textStyle={[
                                 styles.resendOtpText,
                                 // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
@@ -167,11 +173,8 @@ class Otp extends DataHandling {
                         />
                         <WrappedText
                             containerStyle={styles.otpTextContainer}
-                            text={" Seconds"}
-                            textStyle={[
-                                styles.resendOtpText, { color: colors.orange }
-                                // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
-                            ]}
+                            text={timer != 0 && " Seconds"}
+                            textStyle={[styles.resendOtpText, { color: colors.orange }]}
                         />
                     </View>
 
@@ -181,13 +184,13 @@ class Otp extends DataHandling {
                             text={"Didn't receive the OTP? "}
                             textStyle={[
                                 styles.resendOtpText,
-                                // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
                             ]}
                         />
 
                         <Pressable
                             onPress={() => {
-                                this.resendOtp();
+                                timer == 0 ? this.resendOtp() : alert('hai')
+                                // this.resendOtp();
                                 // alert('hai')
                             }}
                             android_ripple={true}
@@ -197,8 +200,8 @@ class Otp extends DataHandling {
                                 containerStyle={styles.otpTextContainerResend}
                                 text={" Resend"}
                                 textStyle={[
-                                    styles.resendOtpText, { color: colors.orange }
-                                    // timer == 0 ? { color: "#ffffff" } : { color: "#ffffff60" },
+                                    styles.resendOtpText,
+                                    timer == 0 ? { color: colors.orange } : { color: colors.grey },
                                 ]}
                             />
 
