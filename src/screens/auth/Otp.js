@@ -3,6 +3,7 @@ import { View, StyleSheet, Pressable, StatusBar, Text, Image, ToastAndroid, Keyb
 import { DataHandling } from "../../server/DatahandlingHoc";
 import { routeNames } from "../../server/route";
 import SimpleToast from "react-native-simple-toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Axios from "axios";
 import {
     fs13,
@@ -79,7 +80,7 @@ class Otp extends DataHandling {
                 };
 
                 console.log("Lets Check Result");
-                this.checkNavigationState();
+                // this.checkNavigationState();
                 //this.props.navigation.replace("findNearestScreen");
             } else {
             }

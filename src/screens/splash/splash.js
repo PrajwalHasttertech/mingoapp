@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import messaging from "@react-native-firebase/messaging";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight } from '../../constants/Dimensions';
 import WrappedRectangleButton from "../components/WrappedRectangleButton";

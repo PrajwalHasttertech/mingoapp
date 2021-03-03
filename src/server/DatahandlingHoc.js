@@ -3,12 +3,7 @@ import { View } from "react-native";
 import SimpleToast from "react-native-simple-toast";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Loader } from "../screens/components";
-import {
-  apiHandleDirect,
-  apiHandler,
-  apiHandler1,
-  directApihandler,
-} from "./apiHandler";
+import { apiHandleDirect,apiHandler, apiHandler1, directApihandler, } from "./apihandler";
 import { route, routeNames } from "./route";
 
 export class DataHandling extends Component {
