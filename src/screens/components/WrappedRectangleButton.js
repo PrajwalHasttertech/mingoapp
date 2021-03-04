@@ -13,6 +13,7 @@ class WrappedButton extends Component {
             containerStyle,
             textStyle,
             elevation,
+            children
         } = this.props;
         return (
             <View
@@ -32,6 +33,7 @@ class WrappedButton extends Component {
                         onPress();
                     }}
                 >
+                    {children && children}
                     <Text
                         style={[
                             {

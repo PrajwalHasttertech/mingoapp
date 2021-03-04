@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Otp, SignIn } from "../screens/auth/Index";
 import Splash from "../screens/splash/splash";
 import {
+    colors,
     fs14,
     fs16,
     globalHeight,
@@ -21,9 +22,9 @@ const Tab = createBottomTabNavigator();
 class Auth extends Component {
     render() {
         return (
-            <Stack.Navigator initialRouteName="signInScreen" headerMode="none">
-                <Stack.Screen name="signInScreen" component={SignIn} />
-                <Stack.Screen name="otpScreen" component={Otp} />
+            <Stack.Navigator initialRouteName="signInScreen" screenOptions={{headerTitleAlign:'center',headerTintColor:colors.headerColor}} >
+                <Stack.Screen name="Register Number" component={SignIn} />
+                <Stack.Screen name="Verify Phone" component={Otp} />
             </Stack.Navigator>
         );
     }

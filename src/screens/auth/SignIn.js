@@ -4,9 +4,11 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import SimpleToast from "react-native-simple-toast";
 
 import { colors, FontFamily, fs14, globalHeight, globalWidth } from "../../constants/Dimensions";
-import { WrappedRectangleButton, WrappedTextInput } from "../components";
+import { WrappedRectangleButton, WrappedTextInput, WrappedText, } from "../components";
 import { DataHandling } from "../../server/DatahandlingHoc";
 import { routeNames } from "../../server/route";
+import HandleSvg from "../../icons/HandleSvg";
+import { color } from "react-native-reanimated";
 
 
 class SignIn extends DataHandling {
@@ -15,7 +17,7 @@ class SignIn extends DataHandling {
         super(props);
         this.state = {
             country: '+91',
-            mobileNumber: "9901895934",
+            mobileNumber: "",
             error: {},
             fetchError: "",
             isLoading: false,
@@ -54,7 +56,7 @@ class SignIn extends DataHandling {
             if (result) {
                 this.setState({ isLoading: false });
                 SimpleToast.show(result.data.message);
-                this.props.navigation.navigate("otpScreen", {
+                this.props.navigation.navigate("Verify Phone", {
                     mobileNumber: mobileNumber,
                 });
             }
@@ -63,8 +65,8 @@ class SignIn extends DataHandling {
 
 
     componentDidMount() {
-        StatusBar.setBackgroundColor("#000000");
-        StatusBar.setBarStyle("light-content");
+        StatusBar.setBackgroundColor(colors.white);
+        StatusBar.setBarStyle("dark-content");
     }
 
     render() {
@@ -88,35 +90,36 @@ class SignIn extends DataHandling {
                     <Text style={styles.contWithPhnoDesc1}> to  verify next. </Text>
                 </View>
 
-                <KeyboardAvoidingView keyboardVerticalOffset={this.state.keyboardVerticalOffset}>
-                    <View style={styles.mobNoContainer}>
-                        <View style={{ width: globalWidth * 2.3, left: 8 }}>
-                            <DropDownPicker
-                                items={[
-                                    { label: '+91', value: '+91' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                    { label: '+380', value: '+380' },
-                                    { label: '+33', value: '+33' },
-                                ]}
-                                defaultValue={this.state.country}
-                                containerStyle={{ height: globalHeight * 0.65, }}
-                                style={{ backgroundColor: '#fff', borderColor: '#fff', }}
-                                itemStyle={{ justifyContent: 'flex-start' }}
-                                dropDownStyle={{ backgroundColor: '#fff', borderColor: '#fff' }}
-                                onChangeItem={item => this.setState({
-                                    country: item.value
-                                })}
-                            />
-                        </View>
+
+                <View style={styles.mobNoContainer}>
+                    <View style={{ width: globalWidth * 2.3, left: 8 }}>
+                        <DropDownPicker
+                            items={[
+                                { label: '+91', value: '+91' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                                { label: '+380', value: '+380' },
+                                { label: '+33', value: '+33' },
+                            ]}
+                            defaultValue={this.state.country}
+                            containerStyle={{ height: globalHeight * 0.65, }}
+                            style={{ backgroundColor: '#fff', borderColor: '#fff', }}
+                            itemStyle={{ justifyContent: 'flex-start' }}
+                            dropDownStyle={{ backgroundColor: '#fff', borderColor: '#fff' }}
+                            onChangeItem={item => this.setState({
+                                country: item.value
+                            })}
+                        />
+                    </View>
+                    <KeyboardAvoidingView keyboardVerticalOffset={this.state.keyboardVerticalOffset}>
                         <View style={styles.buttonContainerMob}>
                             <WrappedTextInput
                                 value={mobileNumber}
@@ -135,15 +138,63 @@ class SignIn extends DataHandling {
                                 errorTextColor={colors.white}
                             />
                         </View>
-                        <View style={{ width: globalWidth * 1.5, backgroundColor: colors.white, height: globalHeight * 0.66, marginRight: 5, borderBottomRightRadius: 8, borderTopRightRadius: 8 }}>
-                            <Image
+                    </KeyboardAvoidingView>
+                    <View style={{ width: globalWidth * 1.5, backgroundColor: colors.white, height: globalHeight * 0.66, marginRight: 5, borderBottomRightRadius: 8, borderTopRightRadius: 8 }}>
+                        {
+                            this.state.mobileNumber.length == 10 ? <Image
                                 style={styles.checked}
                                 source={require('../../icons/checked.png')}
-                            />
-                        </View>
-                    </View>
-                </KeyboardAvoidingView>
+                            /> : undefined
+                        }
 
+                    </View>
+                </View>
+
+                <Text style={[styles.contWithPhnoDesc1, { alignSelf: 'center', marginTop: globalHeight * 0.5 }]}>Or Via Social Media</Text>
+                <View style={{flexDirection:'row',justifyContent:'space-around',margin:globalWidth*0.5}}>
+                    <WrappedRectangleButton
+                        onPress={() => {
+                            // this.socialLogin(
+                            //     apiEndPoint1 + "/auth/facebook",
+                            // );
+                            alert('Hai')
+                        }}
+                        backgroundColor={colors.facebookBlue}
+                        textColor={"#3b5988"}
+                        buttonText={"Facebook"}
+                        containerStyle={{
+                            width: "48%",
+                            borderRadius: globalHeight * 0.15,
+                        }}
+                    >
+                        <Image
+                            style={styles.logoFacebook}
+                            source={require('../../icons/FaceBookIcon.png')}
+                        />
+
+                    </WrappedRectangleButton>
+                    <WrappedRectangleButton
+                        onPress={() => {
+                            // this.socialLogin(
+                            //     apiEndPoint1 + "/auth/facebook",
+                            // );
+                            alert('Hai')
+                        }}
+                        backgroundColor={colors.white}
+                        textColor={"#3b5988"}
+                        buttonText={"Google"}
+                        containerStyle={{
+                            width: "48%",
+                            borderRadius: globalHeight * 0.15,
+                        }}
+                    >
+                        <Image
+                            style={styles.logoFacebook}
+                            source={require('../../icons/googleLogo.png')}
+                        />
+
+                    </WrappedRectangleButton>
+                </View>
                 <View style={styles.buttonContainer}>
                     <WrappedRectangleButton
                         onPress={() => {
@@ -164,6 +215,14 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: colors.blue,
         fontFamily: FontFamily.RobotoMedium
+    },
+    logoFacebook: {
+        width: globalWidth * 1.1,
+        height: globalHeight * 0.55,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        resizeMode: 'contain',
+        marginTop: globalHeight * 0.35
     },
     contWithPhnoDesc: {
         alignItems: 'center',
@@ -186,7 +245,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: globalHeight * 1.3
+        marginTop: globalHeight * 0.7
     },
     textContainer: {
         alignItems: 'center',
@@ -195,7 +254,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         marginLeft: '5%',
         marginRight: '5%',
-        marginTop: globalHeight * 2,
+        marginTop: globalHeight * 0.01,
         marginBottom: '5%',
         // backgroundColor:colors.white
         justifyContent: 'flex-end',

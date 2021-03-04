@@ -31,6 +31,8 @@ export const colors = {
     bluishGrey: '#7a869a',
     grey: '#7a869a',//OTP page text Desc
     orange :'#ef7820',
+    headerColor:'#0e1b42',
+    facebookBlue:'#3c5a9a'
 };
 
 export const errorColor = "#F73D02CC";

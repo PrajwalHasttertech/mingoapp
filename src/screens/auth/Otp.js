@@ -43,8 +43,6 @@ class Otp extends DataHandling {
         };
     }
 
-
-
     startTimer = () => {
         this.timer = setInterval(() => {
             this.setState({ timer: this.state.timer - 1 });
@@ -131,18 +129,6 @@ class Otp extends DataHandling {
                 <StatusBar barStyle={"light-content"} />
 
                 <View style={{ flex: 1 }}>
-                    <Header
-                        headerText={"Verify Phone"}
-                        headerTextStyle={styles.headerTextStyle}
-                        containerStyle={{
-                            justifyContent: "center",
-                            height: globalHeight * 1.1,
-                        }}
-                        leftIcon={LeftArrowBlack}
-                        onLeftIconPress={() => {
-                            this.props.navigation.goBack();
-                        }}
-                    />
 
                     <View style={styles.logoContainer}>
                         <Image
@@ -219,7 +205,7 @@ class Otp extends DataHandling {
 
                         <Pressable
                             onPress={() => {
-                                timer == 0 ? this.resendOtp() : alert('hai')
+                                timer == 0 ? this.resendOtp() : SimpleToast.show("Wait till the timer ends.");
                                 // this.resendOtp();
                                 // alert('hai')
                             }}
@@ -324,7 +310,7 @@ const styles = StyleSheet.create({
         // bottom: "5%",
         marginLeft: '5%',
         marginRight: '5%',
-        marginTop: globalHeight * 2,
+        marginTop: globalHeight * 2.3,
         // flex:1,
         // justifyContent:'flex-end'
     },
