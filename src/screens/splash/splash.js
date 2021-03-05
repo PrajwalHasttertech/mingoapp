@@ -120,8 +120,7 @@ const Splash = ({ navigation }) => {
                     {/* </View> */}
                     <View style={styles.getStartedContainer}>
                         <WrappedRectangleButton
-                            // onPress={() => navigation.navigate('authScreen')}
-                            onPress={() => alert('Please check the terms and condition before proceeding')}
+                            onPress={() => navigation.navigate('authScreen')}
                             backgroundColor={colors.white}
                             textColor={colors.textColor}
                             buttonText={"Get Started"}
@@ -171,7 +170,7 @@ const Splash = ({ navigation }) => {
                             By tapping on get started screen you accept our 
                         </Text>
                         <Text
-                            style={{ color: colors.white, fontSize: fs9 }}
+                            style={{ color: colors.white, fontSize: fs9,fontFamily:FontFamily.RobotBold }}
                             onPress={() => {
                                 displayModal(true);
                             }}

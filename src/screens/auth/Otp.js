@@ -70,16 +70,17 @@ class Otp extends DataHandling {
                 otp: otp,
                 device_token: fcmToken,
             });
-            console.log(result);
+            console.log("The console log of result is -->",result);
             if (result) {
-                await this.storeData(result.data.data);
-                Axios.defaults.headers.common = {
-                    Authorization: `Bearer ${result.data.data.access_token}`,
-                };
+                this.props.navigation.replace("authScreenAfter");
+                // await this.storeData(result.data.data);
+                // Axios.defaults.headers.common = {                                    //to be fixed soon
+                //     Authorization: `Bearer ${result.data.data.access_token}`,
+                // };
 
-                console.log("Lets Check Result");
-                // this.checkNavigationState();
-                //this.props.navigation.replace("findNearestScreen");
+                // console.log("Lets Check Result");
+                // this.checkNavigationState();                                         //to be fixed soon
+                // this.props.navigation.replace("Gender");
             } else {
             }
         } catch (error) {

@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     },
     logoFacebook: {
         width: globalWidth * 1.1,
-        height: globalHeight * 0.55,
+        height: globalHeight * 0.53,
         alignSelf: 'center',
         justifyContent: 'center',
         resizeMode: 'contain',
