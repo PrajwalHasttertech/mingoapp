@@ -1,25 +1,32 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, Image, Modal, ScrollView, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import messaging from "@react-native-firebase/messaging";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight } from '../../constants/Dimensions';
+import { colors, fs16, fs21, FontFamily, fs12, globalWidth, globalHeight, fs14, fs9 } from '../../constants/Dimensions';
 import WrappedRectangleButton from "../components/WrappedRectangleButton";
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from '../../components/CarouselCardItem';
 import data from '../../components/data';
+import TermsAndCondition from '../../components/TermsAndConditions'
+
 
 
 
 const Splash = ({ navigation }) => {
 
     const [index, setIndex] = React.useState(0)
+    const [isVisible, setIsVisible] = useState(false)
     const isCarousel = React.useRef(null)
 
     const getItem = async (name) => {
         return await AsyncStorage.getItem(name);
     };
+
+    const displayModal = (show) => {
+        setIsVisible(show)
+    }
 
     const checkPermission = async () => {
         const enabled = await messaging().hasPermission();
@@ -113,14 +120,64 @@ const Splash = ({ navigation }) => {
                     {/* </View> */}
                     <View style={styles.getStartedContainer}>
                         <WrappedRectangleButton
-                            onPress={() => navigation.navigate('authScreen')}
+                            // onPress={() => navigation.navigate('authScreen')}
+                            onPress={() => alert('Please check the terms and condition before proceeding')}
                             backgroundColor={colors.white}
                             textColor={colors.textColor}
                             buttonText={"Get Started"}
                         />
                     </View>
-                    <View style={{ alignItems: 'center', marginTop: 20, marginBottom: globalHeight * 0.7 }}>
-                        <Text style={{ color: colors.white }}>Terms and Conditions </Text>
+
+                    <Modal
+                        animationType={"slide"}
+                        transparent={true}
+                        visible={isVisible}
+                    >
+                        <ScrollView
+                            style={{
+                                // height: globalHeight * 50, 
+                                backgroundColor: colors.white,
+                                // width: globalWidth * 8, 
+                                margin: globalWidth * 0.1,
+                                borderRadius: 10,
+
+                            }}
+                        >
+                            <TermsAndCondition />
+
+
+                        </ScrollView>
+                        <TouchableOpacity
+                            onPress={() => {
+                                displayModal(!isVisible);
+                            }}>
+                            <Image
+                                style={[styles.tinyLogoClose]}
+                                source={require('../../icons/ClosePhoto.png')}
+                            />
+                        </TouchableOpacity>
+
+
+                    </Modal>
+
+                    <View style={{ alignItems: 'center', marginTop: 20, marginBottom: globalHeight * 0 }}>
+                        <Text
+                            style={{ color: colors.white, fontSize: fs9 }}
+                        >
+                            Disclaimer </Text>
+                    </View>
+                    <View style={{ alignSelf: 'center', marginBottom: globalHeight * 0.7,flexDirection:'row' }}>
+                        <Text style={{ color: colors.white, fontSize: fs9 }}>
+                            By tapping on get started screen you accept our 
+                        </Text>
+                        <Text
+                            style={{ color: colors.white, fontSize: fs9 }}
+                            onPress={() => {
+                                displayModal(true);
+                            }}
+                        >
+                            {' '}terms and conditions
+                        </Text>
                     </View>
                 </LinearGradient>
             </View>
@@ -146,6 +203,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         // aspectRatio: 1,
         resizeMode: 'contain',
+    },
+    tinyLogoClose: {
+        alignSelf: 'center',
+        marginTop: globalHeight * 0.1
     },
     linearGradient: {
         // height: globalHeight * 6,
