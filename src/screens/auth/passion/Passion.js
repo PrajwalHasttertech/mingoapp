@@ -13,7 +13,7 @@ import {
     passionList,
     colors,
 } from "../../../constants/Dimensions";
-// import SelectPassion from "./components/selectPassion";
+import SelectPassion from "./components/selectPassion";
 //import * as API from '@app/core/api/apiLayer'
 import {
     WrappedRectangleButton,
@@ -37,35 +37,36 @@ class Passion extends DataHandling {
         };
     }
 
-    //   selectPassion = (index) => {
-    //     this.setState((prevState) => {
-    //       prevState.passionList[index]["selected"] = !prevState.passionList[index][
-    //         "selected"
-    //       ];
-    //       return { passionList: prevState.passionList };
-    //     });
-    //   };
+      selectPassion = (index) => {
+        this.setState((prevState) => {
+          prevState.passionList[index]["selected"] = !prevState.passionList[index][
+            "selected"
+          ];
+          return { passionList: prevState.passionList };
+        });
+      };
 
-    //   fetchPassion = async () => {
-    //     try {
-    //       this.setLoader(true);
-    //       const result = await this.fetchData(routeNames.getPassion);
-    //       if (result) {
-    //         //console.log(result, result.data.passion);
-    //         this.setState({
-    //           passionList: result.data.data.passion,
-    //           isLoader: false,
-    //         });
-    //         this.setLoader(false);
-    //       }
-    //     } catch (error) {
-    //       this.setLoader(false);
-    //     }
-    //   };
+    fetchPassion = async () => {
+        try {
+            this.setLoader(true);
+            const result = await this.fetchData(routeNames.getPassion);
+            console.log(result, result.data.passion, "The result");
+            if (result) {
+                // console.log(result, result.data.passion);
+                this.setState({
+                    passionList: result.data.data.passion,
+                    isLoader: false,
+                });
+                this.setLoader(false);
+            }
+        } catch (error) {
+            this.setLoader(false);
+        }
+    };
 
-    //   componentDidMount() {
-    //     this.fetchPassion();
-    //   }
+    componentDidMount() {
+        this.fetchPassion();
+    }
 
     //   updatePassion = async () => {
     //     try {
@@ -91,30 +92,30 @@ class Passion extends DataHandling {
     //   };
 
     render() {
-        // const { passionList } = this.state;
+        const { passionList } = this.state;
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor={"#ffffff"} barStyle={"dark-content"} />
                 <View style={{ flex: 1, paddingTop }}>
 
-                    {/* <FlatList
-            data={passionList}
-            renderItem={({ item, index }) => {
-              return (
-                <SelectPassion
-                  key={index}
-                  buttonText={item.name}
-                  selected={item["selected"]}
-                  onPress={() => {
-                    this.selectPassion(index);
-                  }}
-                />
-              );
-            }}
-            keyExtractor={(item) => item._id}
-            columnWrapperStyle={{ justifyContent: "space-around" }}
-            numColumns={3}
-          /> */}
+                    <FlatList
+                        data={passionList}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <SelectPassion
+                                    key={index}
+                                    buttonText={item.name}
+                                    selected={item["selected"]}
+                                    onPress={() => {
+                                        this.selectPassion(index);
+                                    }}
+                                />
+                            );
+                        }}
+                        keyExtractor={(item) => item._id}
+                        columnWrapperStyle={{ justifyContent: "space-around" }}
+                        numColumns={3}
+                    />
                     <View style={styles.button}>
                         <WrappedRectangleButton
                             onPress={() => {

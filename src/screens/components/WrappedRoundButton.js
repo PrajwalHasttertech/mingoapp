@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {StyleSheet, Image, ActivityIndicator} from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, Image, ActivityIndicator } from "react-native";
 import Ripple from "react-native-material-ripple";
 class WrappedRoundButton extends Component {
     render() {
@@ -35,15 +35,17 @@ class WrappedRoundButton extends Component {
                     <ActivityIndicator
                         size={30}
                         color={"#500061"}
-                        style={{opacity: 0.5}}
+                        style={{ opacity: 0.5 }}
                     />
                 ) : (
-                    <Image
-                        source={buttonSource}
-                        style={!style ? styles.buttonIcon : style}
-                        resizeMode={style ? "contain" : "contain"}
-                    />
-                )}
+                        <Image
+                            source={buttonSource}
+                            style={!style ? styles.buttonIcon : style}
+                            resizeMode={style ? "contain" : "contain"}
+                        />
+                        
+                    )}
+                    
             </Ripple>
         );
     }

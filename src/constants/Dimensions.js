@@ -34,6 +34,7 @@ export const colors = {
     headerColor:'#0e1b42',
     facebookBlue:'#3c5a9a',
     termsAndcondition:"#bababa"
+    
 };
 
 export const errorColor = "#F73D02CC";
