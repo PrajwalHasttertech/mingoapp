@@ -1,5 +1,8 @@
 import { StyleSheet, Dimensions, Platform } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
+const StatusBarHeight = getStatusBarHeight();
+export const paddingTop = Platform.OS == "android" ? 0 : StatusBarHeight;
 export const globalHeight = Dimensions.get("window").height * 0.1;
 export const globalWidth = Dimensions.get("window").width * 0.1;
 

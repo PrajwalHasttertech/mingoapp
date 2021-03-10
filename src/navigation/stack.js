@@ -3,8 +3,10 @@ import { View } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Otp, SignIn, Gender,Passion } from "../screens/auth/Index";
+import { Otp, SignIn, Gender, Passion } from "../screens/auth/Index";
 import Splash from "../screens/splash/splash";
+import FindNearest from "../screens/app/findNearest/FindNearest";
+
 import {
     colors,
     fs14,
@@ -40,15 +42,25 @@ class GenPass extends Component {
     }
 }
 
+class FindNearestTab extends Component {
+    render() {
+        return (
+            <Stack.Navigator initialRouteName={"Find the Nearest"} screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }}>
+                <Stack.Screen name="Find the Nearest" component={FindNearest} />
+            </Stack.Navigator>
+        );
+    }
+}
+
 export default class Navigator extends Component {
     render() {
         return (
             <View style={{ backgroundColor: "#000000", flex: 1 }}>
-                <Stack.Navigator initialRouteName="authScreenAfter" headerMode={null}>
+                <Stack.Navigator initialRouteName="FindNearestTab" headerMode={null}>
                     <Stack.Screen name="splashScreen" component={Splash} />
                     <Stack.Screen name="authScreen" component={Auth} />
                     <Stack.Screen name="authScreenAfter" component={GenPass} />
-                    
+                    <Stack.Screen name="FindNearestTab" component={FindNearestTab} />
                 </Stack.Navigator>
             </View>
         );

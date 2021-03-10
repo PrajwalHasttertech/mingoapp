@@ -5,6 +5,8 @@ import MaleBlue from "./ic_male_blue.png";
 import MaleWhite from "./ic_male.png";
 import FemalBlue from "./ic_female.png";
 import FemaleWhite from "./ic_female_white.png";
+import WomanGender from "./womanGenderIcon.png";
+import ManGender from "./manGenderIcon.png";
 
 
 export {
@@ -15,4 +17,6 @@ export {
   MaleWhite,
   FemalBlue,
   FemaleWhite,
+  WomanGender,
+  ManGender
 };

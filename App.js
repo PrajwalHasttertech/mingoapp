@@ -13,39 +13,22 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import Navigator from "./src/navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import configureStore from './src/store';
+import { Provider } from "react-redux";
 
-
+const store = configureStore();
 
 const App = () => {
   return (
-    // <>
-    //   <StatusBar barStyle='light-content' showHideTransition='fade' translucent backgroundColor="transparent" />
-    //   {/* <SafeAreaView> */}
-    //   {/* <Splash /> */}
-    //   {/* <SignIn /> */}
-    //   {/* <Otp /> */}
-    //   <NavigationContainer>
-    //     <Navigator />
-    //   </NavigationContainer>
-    //   {/* </SafeAreaView>  */}
-
-    // </>
     <SafeAreaProvider>
       <StatusBar backgroundColor={"#000000"} barStyle={"light-content"} />
-      <NavigationContainer>
-        <Navigator />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Navigator />
+        </NavigationContainer>
+      </Provider>
     </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-});
 
 export default App;
