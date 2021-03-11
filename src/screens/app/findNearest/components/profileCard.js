@@ -60,6 +60,7 @@ class ProfileCard extends Component {
                                 onPress={() => {
                                     onPress();
                                 }}
+                                //Icon source to be added so that if its a male..then maleIcon else Female Icon.
                             />
                         </View>
                     </LinearGradient>

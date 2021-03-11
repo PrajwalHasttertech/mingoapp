@@ -56,7 +56,7 @@ export default class Navigator extends Component {
     render() {
         return (
             <View style={{ backgroundColor: "#000000", flex: 1 }}>
-                <Stack.Navigator initialRouteName="FindNearestTab" headerMode={null}>
+                <Stack.Navigator initialRouteName="splashScreen" headerMode={null}>
                     <Stack.Screen name="splashScreen" component={Splash} />
                     <Stack.Screen name="authScreen" component={Auth} />
                     <Stack.Screen name="authScreenAfter" component={GenPass} />

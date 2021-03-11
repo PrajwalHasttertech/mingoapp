@@ -37,14 +37,12 @@ class Passion extends DataHandling {
         };
     }
 
-      selectPassion = (index) => {
+    selectPassion = (index) => {
         this.setState((prevState) => {
-          prevState.passionList[index]["selected"] = !prevState.passionList[index][
-            "selected"
-          ];
-          return { passionList: prevState.passionList };
+            prevState.passionList[index]["selected"] = !prevState.passionList[index]["selected"];
+            return { passionList: prevState.passionList };
         });
-      };
+    };
 
     fetchPassion = async () => {
         try {
@@ -68,28 +66,32 @@ class Passion extends DataHandling {
         this.fetchPassion();
     }
 
-    //   updatePassion = async () => {
-    //     try {
-    //       this.setLoader(true);
-    //       const passion = this.state.passionList
-    //         .filter((passion) => passion["selected"])
-    //         .map((passion) => passion._id);
-    //       if (passion.length < 3) {
-    //         this.showToast("Please select atleast 3 passion");
-    //       }
-    //       await Storage.addItemToUserDetail({ passion: passion });
-    //       const result = await this.makeDirectApiCall({
-    //         passion: passion,
-    //       });
-    //       this.setLoader(false);
-    //       if (result) {
-    //         if (this.state.update) this.props.navigation.goBack();
-    //         else this.props.navigation.replace("universityScreen");
-    //       }
-    //     } catch (error) {
-    //       this.setLoader(false);
-    //     }
-    //   };
+    updatePassion = async () => {
+        try {
+            this.setLoader(true);
+              const passion = this.state.passionList
+                .filter((passion) => passion["selected"])
+                .map((passion) => passion._id);
+            if (passion.length < 3) {
+                this.showToast("Please select atleast 3 passion");
+            }else{                                                  //to remove check the dating app code
+                this.props.navigation.navigate("FindNearestTab")    //to remove check the dating app code
+            }                                                       //to remove check the dating app code
+            //   await Storage.addItemToUserDetail({ passion: passion });
+            //   const result = await this.makeDirectApiCall({
+            //     passion: passion,
+            //   });
+            this.setLoader(false);
+            
+            //   if (result) {
+            // if (this.state.update) this.props.navigation.goBack();
+            // else this.props.navigation.replace("universityScreen");
+
+            //   }
+        } catch (error) {
+            this.setLoader(false);
+        }
+    };
 
     render() {
         const { passionList } = this.state;
@@ -120,8 +122,9 @@ class Passion extends DataHandling {
                         <WrappedRectangleButton
                             onPress={() => {
                                 //this.onSignUp();
-                                // this.updatePassion();
-                                this.props.navigation.replace("Passion")
+                                this.updatePassion();
+                                // this.props.navigation.replace("Passion")
+
                             }}
                             backgroundColor={colors.textColor}
                             textColor={"#ffffff"}
