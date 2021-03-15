@@ -80,10 +80,10 @@ class FindNearest extends Component {
                                                     this.props.updateUser({
                                                         selectedIndex: index,
                                                     });
-                                                    // this.props.navigation.navigate(
-                                                    //     "authScreenAfter",
-                                                    // );
-                                                    alert('Discover Partner Screen is on build')
+                                                    this.props.navigation.navigate(
+                                                        "Discover Partner",
+                                                    );
+                                                    // alert('Discover Partner Screen is on build')
                                                 }}
                                             />
                                         );

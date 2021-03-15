@@ -7,6 +7,9 @@ import FemalBlue from "./ic_female.png";
 import FemaleWhite from "./ic_female_white.png";
 import WomanGender from "./womanGenderIcon.png";
 import ManGender from "./manGenderIcon.png";
+import Cancel from "./ic_cancel-xxhdpi.png";
+import Heart from "./Icon_awesome-heart.png";
+import Share from "./Icon_ionic-ios-share-alt.png";
 
 
 export {
@@ -18,5 +21,8 @@ export {
   FemalBlue,
   FemaleWhite,
   WomanGender,
-  ManGender
+  ManGender,
+  Cancel,
+  Heart,
+  Share,
 };

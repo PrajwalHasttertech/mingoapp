@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Otp, SignIn, Gender, Passion } from "../screens/auth/Index";
 import Splash from "../screens/splash/splash";
 import FindNearest from "../screens/app/findNearest/FindNearest";
+import DiscoverPartner from "../screens/app/discoverPartner/DiscoverPartner";
 
 import {
     colors,
@@ -47,6 +48,7 @@ class FindNearestTab extends Component {
         return (
             <Stack.Navigator initialRouteName={"Find the Nearest"} screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }}>
                 <Stack.Screen name="Find the Nearest" component={FindNearest} />
+                <Stack.Screen name="Discover Partner" component={DiscoverPartner} />
             </Stack.Navigator>
         );
     }

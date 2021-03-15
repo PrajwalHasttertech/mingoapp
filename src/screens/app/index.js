@@ -1,3 +1,4 @@
 import FindNearest from "./findNearest/FindNearest";
+import DiscoverPartner from "./discoverPartner/DiscoverPartner";
 
-export { FindNearest };
+export { FindNearest, DiscoverPartner };

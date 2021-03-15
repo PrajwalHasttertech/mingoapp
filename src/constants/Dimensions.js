@@ -36,7 +36,9 @@ export const colors = {
     orange :'#ef7820',
     headerColor:'#0e1b42',
     facebookBlue:'#3c5a9a',
-    termsAndcondition:"#bababa"
+    termsAndcondition:"#bababa",
+    showInfoLocColor:'#ffd2b1',
+    infoShowLocationTextColor:'#170731',
     
 };
 

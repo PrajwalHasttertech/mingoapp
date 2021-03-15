@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image, Modal, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, Modal, ScrollView, TouchableOpacity,StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import messaging from "@react-native-firebase/messaging";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -67,6 +67,7 @@ const Splash = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <StatusBar hidden={true} />
             <Carousel
                 layout="stack"
                 layoutCardOffset={9}

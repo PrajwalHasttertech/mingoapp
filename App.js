@@ -15,19 +15,23 @@ import Navigator from "./src/navigation/stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import configureStore from './src/store';
 import { Provider } from "react-redux";
+import { colors } from "./src/constants/Dimensions";
 
 const store = configureStore();
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar backgroundColor={"#000000"} barStyle={"light-content"} />
-      <Provider store={store}>
-        <NavigationContainer>
-          <Navigator />
-        </NavigationContainer>
-      </Provider>
-    </SafeAreaProvider>
+    <>
+      <StatusBar backgroundColor={"#fff"} barStyle={"light-content"} />
+      <SafeAreaProvider>
+        <StatusBar backgroundColor={"#000000"} barStyle={"light-content"} />
+        <Provider store={store}>
+          <NavigationContainer>
+            <Navigator />
+          </NavigationContainer>
+        </Provider>
+      </SafeAreaProvider>
+    </>
   );
 };
 

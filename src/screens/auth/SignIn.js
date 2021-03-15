@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, StatusBar, Text, Image, KeyboardAvoidingView, ScrollView } from "react-native";
+import { View, StyleSheet, StatusBar, Text, Image, KeyboardAvoidingView, ScrollView, Platform } from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
 import SimpleToast from "react-native-simple-toast";
 
@@ -151,7 +151,7 @@ class SignIn extends DataHandling {
                 </View>
 
                 <Text style={[styles.contWithPhnoDesc1, { alignSelf: 'center', marginTop: globalHeight * 0.5 }]}>Or Via Social Media</Text>
-                <View style={{flexDirection:'row',justifyContent:'space-around',margin:globalWidth*0.5}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: globalWidth * 0.5 }}>
                     <WrappedRectangleButton
                         onPress={() => {
                             // this.socialLogin(
