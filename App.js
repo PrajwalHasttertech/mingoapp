@@ -22,7 +22,6 @@ const store = configureStore();
 const App = () => {
   return (
     <>
-      <StatusBar backgroundColor={"#fff"} barStyle={"light-content"} />
       <SafeAreaProvider>
         <StatusBar backgroundColor={"#000000"} barStyle={"light-content"} />
         <Provider store={store}>

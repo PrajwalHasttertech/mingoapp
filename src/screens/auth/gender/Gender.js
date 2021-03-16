@@ -78,8 +78,8 @@ class Gender extends DataHandling {
                                     buttonText={gender.gender}
                                     buttonSource={
                                         index == selectedIndex
-                                            ? gender.imageWhite
-                                            : gender.imageBlue
+                                            ? gender.imageBlue
+                                            : gender.imageWhite
                                     }
                                     selected={index == selectedIndex}
                                     containerStyle={styles.gender}
@@ -113,7 +113,7 @@ export default Gender;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#ffffff",
+        // backgroundColor: "#ffffff",
     },
     container1: {
         flex: 1,

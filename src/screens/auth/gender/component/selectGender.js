@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {StyleSheet, Image, ActivityIndicator, View} from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, Image, ActivityIndicator, View } from "react-native";
 import {
     fs21,
     globalHeight,
@@ -7,9 +7,10 @@ import {
     paddingTop,
     errorColor,
     FontFamily,
+    colors,
 } from "../../../../constants/Dimensions";
 import Ripple from "react-native-material-ripple";
-import {WrappedText} from "../../../components";
+import { WrappedText } from "../../../components";
 class SelectGender extends Component {
     render() {
         const {
@@ -29,14 +30,15 @@ class SelectGender extends Component {
                     style={[
                         styles.container,
                         containerStyle,
-                        {backgroundColor: !selected ? "#FFEEFD" : "#3C0FC7"},
+                        { backgroundColor: !selected ? undefined : colors.white },
+                        { borderWidth: !selected ? 0 : 3 }
                     ]}
                     onPress={() => {
                         if (!selected) {
                             onPress();
                         }
                     }}
-                    rippleContainerBorderRadius={globalHeight * 0.75}
+                    rippleContainerBorderRadius={globalHeight * 0.1}
                 >
                     {buttonSource ? (
                         <Image
@@ -45,18 +47,20 @@ class SelectGender extends Component {
                             resizeMode={style ? "contain" : "contain"}
                         />
                     ) : (
-                        <View />
-                    )}
+                            <View />
+                        )}
+
+                    <WrappedText
+                        containerStyle={{
+                            alignSelf: "center",
+                            marginTop: globalHeight * 0.2,
+                        }}
+                        text={buttonText}
+                        textStyle={styles.textStyle1}
+                        fontFamily={FontFamily.FontsFreeNetSFProDisplayBold}
+                    />
                 </Ripple>
-                <WrappedText
-                    containerStyle={{
-                        alignSelf: "center",
-                        marginTop: globalHeight * 0.2,
-                    }}
-                    text={buttonText}
-                    textStyle={styles.textStyle1}
-                    fontFamily={FontFamily.FontsFreeNetSFProDisplayBold}
-                />
+
             </View>
         );
     }
@@ -64,12 +68,13 @@ class SelectGender extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fdfdfd",
+        backgroundColor: colors.white,
         alignItems: "center",
         justifyContent: "center",
-        height: globalHeight * 1.5,
-        width: globalHeight * 1.5,
-        borderRadius: globalHeight * 0.75,
+        height: globalHeight * 2.3,
+        width: globalHeight * 1.9,
+        borderRadius: globalHeight * 0.1,
+        borderColor: colors.orange,
     },
     buttonIcon: {
         height: globalHeight,
