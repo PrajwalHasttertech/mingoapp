@@ -3,7 +3,7 @@ import { View, StatusBar } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Otp, SignIn, Gender, Passion } from "../screens/auth/Index";
+import { Otp, SignIn, Gender, Passion,University } from "../screens/auth/Index";
 import Splash from "../screens/splash/splash";
 import FindNearest from "../screens/app/findNearest/FindNearest";
 import DiscoverPartner from "../screens/app/discoverPartner/DiscoverPartner";
@@ -41,6 +41,7 @@ class GenPass extends Component {
                 <Stack.Navigator initialRouteName="Gender" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
                     <Stack.Screen name="Gender" component={Gender} />
                     <Stack.Screen name="Passion" component={Passion} />
+                    <Stack.Screen name="My University" component={University} />
                 </Stack.Navigator>
             </View>
         );
@@ -65,8 +66,8 @@ export default class Navigator extends Component {
         return (
             <View style={{ backgroundColor: "#000000", flex: 1 }}>
                 <Stack.Navigator initialRouteName="splashScreen" headerMode={null}>
-                    <Stack.Screen name="splashScreen" component={Splash} />
-                    <Stack.Screen name="authScreen" component={Auth} />
+                    {/* <Stack.Screen name="splashScreen" component={Splash} /> */}
+                    {/* <Stack.Screen name="authScreen" component={Auth} /> */}
                     <Stack.Screen name="authScreenAfter" component={GenPass} />
                     <Stack.Screen name="FindNearestTab" component={FindNearestTab} />
                 </Stack.Navigator>

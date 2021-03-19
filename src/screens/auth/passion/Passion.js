@@ -75,7 +75,8 @@ class Passion extends DataHandling {
             if (passion.length < 3) {
                 this.showToast("Please select atleast 3 passion");
             }else{                                                  //to remove check the dating app code
-                this.props.navigation.navigate("FindNearestTab")    //to remove check the dating app code
+                // this.props.navigation.navigate("FindNearestTab")    //to remove check the dating app code
+                this.props.navigation.navigate("My University")
             }                                                       //to remove check the dating app code
             //   await Storage.addItemToUserDetail({ passion: passion });
             //   const result = await this.makeDirectApiCall({

@@ -24,11 +24,11 @@ class Gender extends DataHandling {
         super(props);
     }
 
-    componentDidMount() {
-        //SplashScreen.hide();
-        StatusBar.setBackgroundColor("#ffffff");
-        StatusBar.setBarStyle("dark-content");
-    }
+    // componentDidMount() {
+    //     //SplashScreen.hide();
+    //     StatusBar.setBackgroundColor("#ffffff");
+    //     StatusBar.setBarStyle("dark-content");
+    // }
 
     selectGender = (selectedIndex) => {
         this.setState({ selectedIndex });
