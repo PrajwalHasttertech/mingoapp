@@ -59,25 +59,26 @@ class University extends DataHandling {
     }
 
     updatePassion = async () => {
-        try {
-            this.setLoader(true);
-            const { selectedInstitute } = this.state;
-            console.log(selectedInstitute);
-            const result = await this.makeDirectApiCall({
-                institute: selectedInstitute.value,
-            });
-            console.log(result);
-            this.setLoader(false);
-            if (result) {
-                Storage.addItemToUserDetail({
-                    institute: selectedInstitute.label,
-                });
-                if (this.state.update) this.props.navigation.goBack();
-                else this.props.navigation.replace("interestedInScreen");
-            }
-        } catch (error) {
-            this.setLoader(false);
-        }
+        this.props.navigation.replace("Interested");
+        // try {
+        //     this.setLoader(true);
+        //     const { selectedInstitute } = this.state;
+        //     console.log(selectedInstitute);
+        //     const result = await this.makeDirectApiCall({
+        //         institute: selectedInstitute.value,
+        //     });
+        //     console.log(result);
+        //     this.setLoader(false);
+        //     if (result) {
+        //         Storage.addItemToUserDetail({
+        //             institute: selectedInstitute.label,
+        //         });
+        //         if (this.state.update) this.props.navigation.goBack();
+        //         else this.props.navigation.replace("Interested");
+        //     }
+        // } catch (error) {
+        //     this.setLoader(false);
+        // }
     };
 
     render() {

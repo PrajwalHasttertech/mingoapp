@@ -3,7 +3,7 @@ import { View, StatusBar } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Otp, SignIn, Gender, Passion,University } from "../screens/auth/Index";
+import { Otp, SignIn, Gender, Passion,University,InterestedIn } from "../screens/auth/Index";
 import Splash from "../screens/splash/splash";
 import FindNearest from "../screens/app/findNearest/FindNearest";
 import DiscoverPartner from "../screens/app/discoverPartner/DiscoverPartner";
@@ -39,9 +39,10 @@ class GenPass extends Component {
         return (
             <View style={{ backgroundColor: "#000000", flex: 1, top: globalHeight * 0.3 }}>
                 <Stack.Navigator initialRouteName="Gender" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
-                    <Stack.Screen name="Gender" component={Gender} />
-                    <Stack.Screen name="Passion" component={Passion} />
-                    <Stack.Screen name="My University" component={University} />
+                    {/* <Stack.Screen name="Gender" component={Gender} /> */}
+                    {/* <Stack.Screen name="Passion" component={Passion} /> */}
+                    {/* <Stack.Screen name="My University" component={University} /> */}
+                    <Stack.Screen name="Interested" component={InterestedIn} />
                 </Stack.Navigator>
             </View>
         );

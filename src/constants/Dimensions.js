@@ -39,7 +39,7 @@ export const colors = {
     termsAndcondition:"#bababa",
     showInfoLocColor:'#ffd2b1',
     infoShowLocationTextColor:'#170731',
-    
+    lightGrey:'#dddddd'
 };
 
 export const errorColor = "#F73D02CC";
