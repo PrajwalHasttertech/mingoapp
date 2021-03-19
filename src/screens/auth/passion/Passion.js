@@ -97,7 +97,7 @@ class Passion extends DataHandling {
         const { passionList } = this.state;
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor={"#ffffff"} barStyle={"dark-content"} />
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={{ flex: 1, paddingTop }}>
 
                     <FlatList
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     },
     button: {
         position: "absolute",
-        bottom: globalHeight * 0.3,
+        bottom: globalHeight * 0.4,
         left: "5%",
         right: "5%",
     },

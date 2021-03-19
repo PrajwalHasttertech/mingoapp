@@ -25,20 +25,24 @@ const Tab = createBottomTabNavigator();
 class Auth extends Component {
     render() {
         return (
-            <Stack.Navigator initialRouteName="signInScreen" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
-                <Stack.Screen name="Register Number" component={SignIn} />
-                <Stack.Screen name="Verify Phone" component={Otp} />
-            </Stack.Navigator>
+            <View style={{ backgroundColor: "#000000", flex: 1, top: globalHeight * 0.3 }}>
+                <Stack.Navigator initialRouteName="signInScreen" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
+                    <Stack.Screen name="Register Number" component={SignIn} />
+                    <Stack.Screen name="Verify Phone" component={Otp} />
+                </Stack.Navigator>
+            </View>
         );
     }
 }
 class GenPass extends Component {
     render() {
         return (
-            <Stack.Navigator initialRouteName="Gender" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
-                <Stack.Screen name="Gender" component={Gender} />
-                <Stack.Screen name="Passion" component={Passion} />
-            </Stack.Navigator>
+            <View style={{ backgroundColor: "#000000", flex: 1, top: globalHeight * 0.3 }}>
+                <Stack.Navigator initialRouteName="Gender" screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }} >
+                    <Stack.Screen name="Gender" component={Gender} />
+                    <Stack.Screen name="Passion" component={Passion} />
+                </Stack.Navigator>
+            </View>
         );
     }
 }
@@ -46,10 +50,12 @@ class GenPass extends Component {
 class FindNearestTab extends Component {
     render() {
         return (
-            <Stack.Navigator initialRouteName={"Find the Nearest"} screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }}>
-                <Stack.Screen name="Find the Nearest" component={FindNearest} />
-                <Stack.Screen name="Discover Partner" component={DiscoverPartner} />
-            </Stack.Navigator>
+            <View style={{ backgroundColor: "#000000", flex: 1, top: globalHeight * 0.3 }}>
+                <Stack.Navigator initialRouteName={"Find the Nearest"} screenOptions={{ headerTitleAlign: 'center', headerTintColor: colors.headerColor }}>
+                    <Stack.Screen name="Find the Nearest" component={FindNearest} />
+                    <Stack.Screen name="Discover Partner" component={DiscoverPartner} />
+                </Stack.Navigator>
+            </View>
         );
     }
 }

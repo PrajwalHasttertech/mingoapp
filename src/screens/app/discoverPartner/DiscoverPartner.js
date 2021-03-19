@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { discoverPartnerMapStateToProps } from "../../../constants/mapStateToProps";
 import { routeNames } from "../../../server/route";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { colors } from "../../../constants/Dimensions";
 
 class DiscoverPartner extends DataHandling {
 
@@ -43,10 +44,7 @@ class DiscoverPartner extends DataHandling {
         const { photo } = this.state;
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={"#ffffff"}
-                    barStyle={"dark-content"}
-                />
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={{ paddingHorizontal: "5%" }}>
                         <CardStack
                         style={styles.CardContainer}

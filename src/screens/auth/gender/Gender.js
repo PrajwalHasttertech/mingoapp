@@ -60,7 +60,7 @@ class Gender extends DataHandling {
         const { gender, selectedIndex, isLoading, navigation } = this.state;
         return (
             <View style={[styles.container, paddingTop]}>
-                <StatusBar backgroundColor={"#ffffff"} barStyle={"dark-content"} />
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={styles.container1}>
                     <WrappedText
                         containerStyle={{

@@ -7,7 +7,7 @@ import {
     StatusBar,
     Image,
 } from "react-native";
-import { globalHeight, paddingTop } from "../../../constants/Dimensions";
+import { colors, globalHeight, paddingTop } from "../../../constants/Dimensions";
 import { findNearestMapStateToProps } from "../../../constants/mapStateToProps";
 import { Header } from "../../components";
 import ProfileCard from "./components/profileCard";
@@ -51,10 +51,7 @@ class FindNearest extends Component {
         const { userById, user } = this.props;
         return (
             <View style={[styles.container, { paddingTop: paddingTop }]}>
-                <StatusBar
-                    backgroundColor={"#ffffff"}
-                    barStyle={"dark-content"}
-                />
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={{ flex: 1 }}>
                     {/* <Header
                         headerText={"Find the nearest"}

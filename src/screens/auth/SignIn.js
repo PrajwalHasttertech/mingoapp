@@ -65,8 +65,10 @@ class SignIn extends DataHandling {
 
 
     componentDidMount() {
-        StatusBar.setBackgroundColor(colors.white);
-        StatusBar.setBarStyle("dark-content");
+        // StatusBar.setBackgroundColor(colors.white);
+        // StatusBar.setBarStyle("dark-content");
+        // StatusBar.setHidden(false);
+        // StatusBar.setTranslucent(true);
     }
 
     render() {
@@ -77,6 +79,7 @@ class SignIn extends DataHandling {
         } = this.state;
         return (
             <ScrollView style={{ flex: 1 }}>
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={styles.logoContainer}>
                     <Image
                         style={styles.tinyLogo}

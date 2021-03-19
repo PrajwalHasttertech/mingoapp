@@ -127,7 +127,7 @@ class Otp extends DataHandling {
         const { timer, mobileNumber, isLoading } = this.state;
         return (
             <View style={styles.container}>
-                <StatusBar barStyle={"light-content"} />
+                <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
 
                 <View style={{ flex: 1 }}>
 
