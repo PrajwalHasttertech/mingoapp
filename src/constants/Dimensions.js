@@ -54,6 +54,26 @@ export const FontFamily = {
     Helvatica: "Helvetica",
 };
 
+export const commonStyle = StyleSheet.create({
+    borderedContainer: {
+      borderStyle: "dashed",
+    },
+    container: {
+      flex: 1,
+      paddingTop: paddingTop,
+    },
+    Pressable: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      position: "absolute",
+  
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  });
+
 export const navigationScreen = {
     // firendRequest: "friendRequest",
     splashScreen: "splashScreen",

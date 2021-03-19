@@ -90,7 +90,7 @@ class InterestedIn extends DataHandling {
                         <WrappedRectangleButton
                             onPress={async () => {
                                 // this.sendDetails();
-                                this.props.navigation.replace("Passion")
+                                this.props.navigation.replace("About You")
                             }}
                             backgroundColor={colors.textColor}
                             textColor={"#ffffff"}
