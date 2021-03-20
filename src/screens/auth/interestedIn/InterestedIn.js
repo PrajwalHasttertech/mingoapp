@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
         marginTop: globalHeight * 0.7,
         marginLeft: globalWidth * 0.7,
         marginRight: globalWidth * 0.7,
+        flexWrap:'wrap',
     },
     interestIn: {
         backgroundColor: "#fdfdfd",

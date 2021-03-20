@@ -9,5 +9,5 @@ export const gender = [
 export const interestedIn = [
     {interestedIn : 'I’m interested in Men'},
     {interestedIn : 'I’m interested in Women'},
-    // {interestedIn : 'I’m interested in Everyone'},
+    {interestedIn : 'I’m interested in Everyone'},
 ]

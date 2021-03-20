@@ -67,9 +67,7 @@ const styles = StyleSheet.create({
         height: globalHeight * 2.3,
         width: globalHeight * 2.3,
         borderRadius: globalHeight * 0.2,
-        flexWrap: 'wrap',
-        // flex:100,
-        alignItems: 'flex-start'
+        marginBottom:globalWidth * 0.7,
     },
     buttonIcon: {
         height: globalHeight,
@@ -79,9 +77,11 @@ const styles = StyleSheet.create({
     textStyle1: {
         color: "#3c0fc7",
         fontSize: fs21,
-        marginLeft: globalWidth * 0.5,
+        marginLeft: globalWidth * 0.25,
+        marginRight: globalWidth * 0.25,
         alignItems: "center",
         justifyContent: "center",
+        alignSelf:'center'
     },
 });
 export default SelectInterest;
