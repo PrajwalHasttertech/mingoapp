@@ -27,55 +27,92 @@ export const fs44 = globalHeight * 0.5;
 export const fs54 = 54;
 
 export const colors = {
-    white: '#fff',
-    black: '#000',
-    textColor: '#e90f18',//get started color "RED"
-    blue: '#172b4d',//COntinue with phone
-    bluishGrey: '#7a869a',
-    grey: '#7a869a',//OTP page text Desc
-    orange :'#ef7820',
-    headerColor:'#0e1b42',
-    facebookBlue:'#3c5a9a',
-    termsAndcondition:"#bababa",
-    showInfoLocColor:'#ffd2b1',
-    infoShowLocationTextColor:'#170731',
-    lightGrey:'#dddddd'
+  white: '#fff',
+  black: '#000',
+  textColor: '#e90f18',//get started color "RED"
+  blue: '#172b4d',//COntinue with phone
+  bluishGrey: '#7a869a',
+  grey: '#7a869a',//OTP page text Desc
+  orange: '#ef7820',
+  headerColor: '#0e1b42',
+  facebookBlue: '#3c5a9a',
+  termsAndcondition: "#bababa",
+  showInfoLocColor: '#ffd2b1',
+  infoShowLocationTextColor: '#170731',
+  lightGrey: '#dddddd',
+  addImagesTextColor:'#262628'
 };
 
 export const errorColor = "#F73D02CC";
 
 export const FontFamily = {
-    FontsFreeNetSFProDisplayMedium: "FontsFree-Net-SFProDisplay-Medium",
-    FontsFreeNetSFProDisplayBold: "FontsFree-Net-SFProDisplay-Bold",
-    FontsFreeNetSFProDisplayRegular: "FontsFree-Net-SFProDisplay-Regular",
-    RobotoRegular: "Roboto-Regular",
-    RobotoMedium: "Roboto-Medium",
-    RobotBold: "Roboto-Bold",
-    Helvatica: "Helvetica",
+  FontsFreeNetSFProDisplayMedium: "FontsFree-Net-SFProDisplay-Medium",
+  FontsFreeNetSFProDisplayBold: "FontsFree-Net-SFProDisplay-Bold",
+  FontsFreeNetSFProDisplayRegular: "FontsFree-Net-SFProDisplay-Regular",
+  RobotoRegular: "Roboto-Regular",
+  RobotoMedium: "Roboto-Medium",
+  RobotBold: "Roboto-Bold",
+  Helvatica: "Helvetica",
 };
 
 export const commonStyle = StyleSheet.create({
-    borderedContainer: {
-      borderStyle: "dashed",
-    },
-    container: {
-      flex: 1,
-      paddingTop: paddingTop,
-    },
-    Pressable: {
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      position: "absolute",
-  
-      alignItems: "center",
-      justifyContent: "center",
-    },
-  });
+  borderedContainer: {
+    borderStyle: "dashed",
+  },
+  container: {
+    flex: 1,
+    paddingTop: paddingTop,
+  },
+  Pressable: {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: "absolute",
+
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export const colorTransparency = {
+  10: "1A",
+  20: "33",
+  30: "4D",
+  40: "66",
+  50: "80",
+  60: "99",
+  70: "B3",
+  80: "CC",
+  90: "E6",
+  100: "FF",
+};
 
 export const navigationScreen = {
-    // firendRequest: "friendRequest",
-    splashScreen: "splashScreen",
-    // chatScreen: "chatScreen",
-  };
+  // firendRequest: "friendRequest",
+  splashScreen: "splashScreen",
+  // chatScreen: "chatScreen",
+};
+
+export const Align = StyleSheet.create({
+  alcjcc: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  aic: {
+    alignItems: "center",
+  },
+  jcc: {
+    justifyContent: "center",
+  },
+  fdr: {
+    flexDirection: "row",
+  },
+  mv: {
+    marginVertical: globalHeight * 0.1,
+  },
+  buttonHeight: {
+    height: globalHeight * 0.5,
+    borderRadius: globalHeight * 0.25,
+  },
+});

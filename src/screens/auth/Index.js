@@ -5,6 +5,7 @@ import Passion from "./passion/Passion";
 import University from "./University"
 import InterestedIn from "./interestedIn/InterestedIn";
 import ShortDescription from "./ShortDescription";
+import Photo from "./passion/AddPassionPhotos";
 
 export {
     Otp,
@@ -14,4 +15,5 @@ export {
     University,
     InterestedIn,
     ShortDescription,
+    Photo,
 };

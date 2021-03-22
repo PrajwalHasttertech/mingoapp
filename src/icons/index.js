@@ -10,6 +10,9 @@ import ManGender from "./manGenderIcon.png";
 import Cancel from "./ic_cancel-xxhdpi.png";
 import Heart from "./Icon_awesome-heart.png";
 import Share from "./Icon_ionic-ios-share-alt.png";
+import Photo from "./Photo.png";
+import Edit from "./Edit.png";
+import ClosePhoto from "./ClosePhoto.png";
 
 
 export {
@@ -25,4 +28,7 @@ export {
   Cancel,
   Heart,
   Share,
+  Photo,
+  Edit,
+  ClosePhoto,
 };

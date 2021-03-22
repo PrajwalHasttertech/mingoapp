@@ -8,7 +8,7 @@
 
 import "react-native-gesture-handler";
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet, StatusBar, LogBox } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import Navigator from "./src/navigation/stack";
@@ -22,6 +22,7 @@ const store = configureStore();
 const App = () => {
   return (
     <>
+      {LogBox.ignoreAllLogs(true)}
       <SafeAreaProvider>
         {/* <StatusBar backgroundColor="#b3e6ff" barStyle="dark-content" hidden={false} translucent={true} /> */}
         <Provider store={store}>

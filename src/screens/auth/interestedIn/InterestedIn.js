@@ -63,15 +63,6 @@ class InterestedIn extends DataHandling {
             <View style={[styles.container, paddingTop]}>
                 <StatusBar backgroundColor={colors.white} barStyle="dark-content" hidden={false} translucent={true} />
                 <View style={styles.container1}>
-                    <WrappedText
-                        containerStyle={{
-                            alignSelf: "center",
-                            marginTop: globalHeight,
-                        }}
-                        text={"What is your Gender ? "}
-                        textStyle={styles.textStyle1}
-                        fontFamily={FontFamily.RobotoMedium}
-                    />
                     <View style={styles.genderContainer}>
                         {interestedIn.map((interestedIn, index) => {
                             return (
